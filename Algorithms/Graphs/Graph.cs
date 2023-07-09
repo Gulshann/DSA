@@ -77,6 +77,26 @@ namespace DSA.Algorithms.Graphs
             }
         }
 
+        public void DFS()
+        {
+            bool[] visited = new bool[7];
+            DepthFS(network, 0, visited);
+        }
+
+        private void DepthFS(List<List<Edge>> network, int v, bool[] visited)
+        {
+            Console.Write(v + " ");
+            visited[v] = true;
+
+            foreach(var item in network[v])
+            {
+                if (!visited[item.end])
+                {
+                    DepthFS(network, item.end, visited); 
+                }
+            }
+        }
+
         public void PrintGraph()
         {
             int i = 0;
