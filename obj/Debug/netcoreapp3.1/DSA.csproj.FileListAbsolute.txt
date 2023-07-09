@@ -1,0 +1,17 @@
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.exe
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.deps.json
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.runtimeconfig.json
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.runtimeconfig.dev.json
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.dll
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\DSA.pdb
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.csproj.AssemblyReference.cache
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.AssemblyInfoInputs.cache
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.AssemblyInfo.cs
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.csproj.CoreCompileInputs.cache
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.dll
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.pdb
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.genruntimeconfig.cache
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Practice\c#\DSA\DSA\obj\Debug\netcoreapp3.1\DSA.csproj.CopyComplete
+C:\Practice\c#\DSA\DSA\bin\Debug\netcoreapp3.1\json1.json
