@@ -1,0 +1,204 @@
+@model MarketingManager.ViewModels.CampaignInformationViewModel
+@using Common.Serialization;
+@if (!string.IsNullOrEmpty(Model.CampaignInformationModel.CustomStyle) && Model.CampaignInformationModel.CustomStyleInfo.Count > 0)
+                                                    {
+                                                        int index = 0;
+                                                        foreach (var dict in Model.CampaignInformationModel.CustomStyleInfo)
+                                                        {
+                                                            string elementName = dict.Key;
+
+                                                            foreach (var internalDict in dict.Value)
+                                                            {
+                                                                string styleActionName = internalDict.Key;
+<div id="divCustomStyle_@index" class="row form-group">
+    <div class="copy">
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">
+                <label id="lblCappingType[0]">Select Element</label>
+            </div>
+            <div class="col-md-7 noPadding">
+                <div class="form-group">
+                    <div id="customStyleHTML_@index">
+                        @Html.DropDownList("Select HTML Tag", @Model.CampaignInformationModel.CustomHTMLElement.Select(x => new SelectListItem() { Text = x.Replace("$STYLE_", "").Replace("$", ""), Value = x, Selected = x == elementName }), "Select Element", new { @class = "form-control", id = "dpdCustomHTML_" + index })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">
+                <label id="lblAction[0]">Select Style</label>
+            </div>
+            <div class="col-md-7 noPadding">
+                <div class="form-group">
+                    <div id="customStyleAction">
+                        @Html.DropDownList("Select Style", @Model.CampaignInformationModel.CustomStyleAction.Select(x => new SelectListItem() { Text = x, Value = x, Selected = x == styleActionName }), "Select Style", new { @class = "form-control", @id = "dpdCustStyle_" + index })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 form-group" id="inputStyle_@index">
+            @if (styleActionName.ToLower().Contains("color"))
+            {
+            <div class="col-md-12 top-20">
+                <div class="copy-hex-color">
+                    <input class="btn" type="color" id="inputValue_@index" value="@internalDict.Value" title="Select the color">
+                </div>
+            </div>
+            }
+            else
+            {
+            <input type="text" id="inputValue_@index" value="@internalDict.Value" class="form-control col-md-7" />
+            }
+        </div>
+        <button style="margin:0px 0px 10px 15px;" class="btn btn-greyish fa fa-fw fa-trash-o icon" id="btnReset_@index"></button>
+    </div>
+</div>
+                                                                index++;
+                                                            }
+
+
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+<div id="divCustomStyle_0" class="row form-group">
+    <div class="copy">
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">
+                <label id="lblCappingType[0]">Select Element</label>
+            </div>
+            <div class="col-md-7 noPadding">
+                <div class="form-group">
+                    <div id="customStyleHTML_0">
+
+                        @Html.DropDownList("Select HTML Tag", @Model.CampaignInformationModel.CustomHTMLElement.Select(x => new SelectListItem() { Text = x.Replace("$STYLE_", "").Replace("$", ""), Value = x }), "Select Element", new { @class = "form-control", id = "dpdCustomHTML_0" })
+                        @*@Model.CampaignInformationModel.TemplateStyleFieldsStr*@
+                        @*@Html.DropDownListFor(model => model.CampaignInformationModel.CustomStyleInfo.HTMLElement, Model.CustomStyleHTMLItem, "Select HTML Element", new { @class = "form-control check", data_selector = "HTMLElement[0]" })
+                        @Html.ValidationMessageFor(model => model.CampaignInformationModel.CustomStyleInfo.HTMLElement, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">
+                <label id="lblAction[0]">Select Style</label>
+            </div>
+            <div class="col-md-7 noPadding">
+                <div class="form-group">
+                    <div id="customStyleAction">
+                        @Html.DropDownList("Select Style", @Model.CampaignInformationModel.CustomStyleAction.Select(x => new SelectListItem() { Text = x, Value = x }), "Select Style", new { @class = "form-control", @id = "dpdCustStyle_0" })
+                        @*@Html.DropDownListFor(model => model.CampaignInformationModel.CustomStyleInfo.CustomStyle, Model.CustomStyleActionItem, "Select Style", new { @class = "form-control checkAction", data_selector = "StyleAction[0]" })
+                        @Html.ValidationMessageFor(model => model.CampaignInformationModel.CampaignCapping.Action, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 form-group" id="inputStyle_0">
+
+        </div>
+        <button style="margin:0px 0px 10px 15px;" class="btn btn-greyish fa fa-fw fa-trash-o icon" id="btnReset_0"></button>
+    </div>
+</div>
+                                                    }
+
+<div class="col-md-6 noPadding">
+    <div class="col-md-9 noPadding">
+        <div class="btn btn-themed-blue fa fa-fw fa-plus icon" id="btnAddCustomStyle"></div>
+
+    </div>
+</div>
+
+<script>
+    // Custom Style script
+
+    $(document).on('change', "select[id^='dpdCustStyle_']", function () {
+
+        var selectedIndex = parseInt(this.id.split("_")[1]);
+
+        $('#inputStyle_' + selectedIndex).html('');
+
+        var indexedID = 'inputValue_' + selectedIndex;
+
+        //Color pallaete
+        if (this.value.includes("Color") || this.value.includes("color")) {
+
+            let htmlToAppend = `<div class="col-md-12 top-20">
+                                <div class="copy-hex-color">
+                                   <input class="btn" type="color" id="inputValue" title="Select the color">
+                                </div>
+                            </div> `;
+
+            let finalHtmlToAppend = htmlToAppend.replace("inputValue", indexedID);
+
+            $('#inputStyle_' + selectedIndex).append(finalHtmlToAppend);
+        }
+        else {
+
+            let htmlToAppend = `<input type="text" id="inputValue" class="form-control col-md-7"></input>`;
+
+            let finalHtmlToAppend = htmlToAppend.replace("inputValue", indexedID);
+
+            $('#inputStyle_' + selectedIndex).append(finalHtmlToAppend);
+        }
+    });
+
+    $("#btnAddCustomStyle").click(function (e) {
+
+        e.preventDefault();
+
+        var customStyleItems = $("#customStyle-Main")[0];
+
+
+        var selectedIndex = $('[id*="dpdCustStyle_"]').last()[0].id.split('_')[1];
+
+        var selectedHTML = $("#dpdCustomHTML_" + (selectedIndex)).val();
+        var selectedStyle = $("#dpdCustStyle_" + (selectedIndex)).val();
+
+        if (selectedHTML == '' || selectedHTML == undefined || selectedStyle == '' || selectedStyle == undefined) {
+            alert("Please select proper value in the previous section.");
+            return;
+        }
+
+        var htmlToAppend = '';
+
+        var idToAppend = parseInt($('[id*="divCustomStyle_"]').last().attr('id').split('_')[1]) + 1;
+        htmlToAppend = $('#divCustomStyle_0').html().replace(/\[0]/g, '[' + idToAppend + ']');
+
+
+        $("#divCustomStyle_" + (idToAppend - 1)).after('<div id="divCustomStyle_' + idToAppend + '" class="row form-group"><hr/>' + htmlToAppend + '</div>')//+ '<button id="btnRemoveCallback_' + idToAppend + '" style= "margin:0px 0px 10px 15px;" class="btn btn-greyish fa fa-fw fa-trash-o icon" onclick= "RemoveRegion(this)" value= "" ></button ></div > ');
+
+
+        //Assigning the id's as per the index in the sequence.
+        $('[id*="dpdCustStyle_"]').last()[0].id = "dpdCustStyle_" + idToAppend;
+
+        $('[id*="inputStyle_"]').last()[0].id = "inputStyle_" + idToAppend;
+
+        $('[id*="btnReset_"]').last()[0].id = "btnReset_" + idToAppend;
+
+        $('[id*="customStyleHTML_"]').last()[0].id = "customStyleHTML_" + idToAppend;
+
+        $('[id*="dpdCustomHTML_"]').last()[0].id = "dpdCustomHTML_" + idToAppend;
+
+        $('[id*="inputStyle_"]').last()[0].id = 'inputStyle_' + idToAppend;
+    });
+
+    $(document).on('click', "button[id^='btnReset_']", function () {
+
+        var customStyleItems = $("#customStyle-Main")[0];
+
+        if (customStyleItems.childElementCount > 2) {
+
+            var selectedIndex = parseInt(this.id.split("_")[1]);
+
+            $("#divCustomStyle_" + selectedIndex)[0].outerHTML = '';
+        }
+        else {
+
+            alert("Operation not allowed.");
+
+            return false;
+        }
+
+    });
+</script>

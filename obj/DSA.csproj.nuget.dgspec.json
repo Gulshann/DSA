@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Practice\\c#\\DSA\\DSA\\DSA.csproj": {}
+    "E:\\Github_Personal\\DSA\\DSA.csproj": {}
   },
   "projects": {
-    "C:\\Practice\\c#\\DSA\\DSA\\DSA.csproj": {
+    "E:\\Github_Personal\\DSA\\DSA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Practice\\c#\\DSA\\DSA\\DSA.csproj",
+        "projectUniqueName": "E:\\Github_Personal\\DSA\\DSA.csproj",
         "projectName": "DSA",
-        "projectPath": "C:\\Practice\\c#\\DSA\\DSA\\DSA.csproj",
+        "projectPath": "E:\\Github_Personal\\DSA\\DSA.csproj",
         "packagesPath": "C:\\Users\\gulshan.kumar\\.nuget\\packages\\",
-        "outputPath": "C:\\Practice\\c#\\DSA\\DSA\\obj\\",
+        "outputPath": "E:\\Github_Personal\\DSA\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gulshan.kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,7 +52,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -61,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

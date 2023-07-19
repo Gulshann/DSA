@@ -21,9 +21,17 @@ namespace DSA
         static void Main(string[] args)
         {
 
-            Graph graph = new Graph();
-            graph.PrintGraph();
-            graph.BFS();
+
+            LC_1 lc = new LC_1();
+            // Graph graph = new Graph();
+            // graph.PrintGraph();
+
+            // Console.WriteLine("Breadth First Search : ");
+            // graph.BFS();
+            // Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+
+            // Console.WriteLine("Depth First Search : ");
+            // graph.DFS();
 
             //Numbers numbers = new Numbers();
             //string num=numbers.AddBinary("10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101", "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011");
