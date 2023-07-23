@@ -8,82 +8,66 @@ namespace DSA.Algorithms
     {
         public LC_1()
         {
-            int[] arr = {5,10,-5};
-            AsteroidCollision(arr);
-           //Console.WriteLine(RemoveStars("leet**cod*e"));
+                int[] arr = {5,10,-5};
+                AsteroidCollision(arr);
+            //Console.WriteLine(RemoveStars("leet**cod*e"));
         }
 
-       private bool IsSameDirection(int a, int b){
-        if(a>=0 && b>=0){
-            return true;
-        }
-        else if(a<0 && b<0){
-            return true;
-        }
-
-        return false;
-    }
-    public int[] AsteroidCollision(int[] asteroids) {
+         public string GcdOfStrings(string str1, string str2) {
         
-        Stack<int> mainStack= new Stack<int>();
+       return (str1+str2 == str2+str1) ? str1.Substring(0, gcd(str1.Length, str2.Length)): "";
+    }
 
-        foreach(var item in asteroids){
-            if(mainStack.Count==0 ||(mainStack.Peek()<0 && item>0) || IsSameDirection(item, mainStack.Peek())){
-                mainStack.Push(item);
-            }
-            else{
-                if(mainStack.Count>0){
+       public int[] AsteroidCollision(int[] asteroids) {
+        
+        Stack<int> mainStack = new Stack<int>();
 
-                    int topItem = mainStack.Peek();
-
-                    int temp= item>0? item : -1*item;
-
-                    while(true){
-
-                        if(topItem>temp){
-                            break;
-                        }
-                        else if(topItem<temp){
-                            if(mainStack.Count==0 || topItem<0){
-                                mainStack.Push(item);
-                                break;
-                            }
-                            mainStack.Pop();
-                            topItem = mainStack.Peek();
-                        }
-                        else{
-                            mainStack.Pop();
-                        }
+            foreach (var item in asteroids)
+            {
+                if (mainStack.Count == 0 || (mainStack.Peek() < 0 && item > 0) || IsSameDirection(item, mainStack.Peek()))
+                {
+                    mainStack.Push(item);
+                }
+                else
+                {
+                    while(mainStack.Count>0 && mainStack.Peek()>0 && mainStack.Peek() < Math.Abs(item)){
+                        mainStack.Pop();
                     }
 
-
-                    
-                    // if(temp>topItem){
-                    //   mainStack.Push(item);   
-                    // }
-                    // else if(topItem>temp){
-                    //     mainStack.Push(topItem);
-                    // }
-                    
+                    if(mainStack.Count == 0 || mainStack.Peek()<0){
+                        mainStack.Push(item);
+                    }
+                    else if( mainStack.Peek()==Math.Abs(item)){
+                        mainStack.Pop();
+                    }
                 }
             }
-        }
 
-        List<int> res= new List<int>();
+            List<int> res = new List<int>();
 
-        Stack<int> tempStack = new Stack<int>();
+            Stack<int> tempStack = new Stack<int>();
 
-        while(mainStack.Count!=0){
-            tempStack.Push(mainStack.Pop());
-        } 
+            while (mainStack.Count != 0)
+            {
+                tempStack.Push(mainStack.Pop());
+            }
 
-        while(tempStack.Count!=0){
-            res.Add(tempStack.Pop());
-        }
+            while (tempStack.Count != 0)
+            {
+                res.Add(tempStack.Pop());
+            }
 
-        return res.ToArray();
+            return res.ToArray();
 
     }
+
+        private bool IsSameDirection(int item, int v)
+        {
+            if(item>0 && v>0) return true;
+            else if(item<0 && v<0) return true;
+
+            return false;
+        }
 
         public string RemoveStars(string s)
         {
@@ -120,6 +104,12 @@ namespace DSA.Algorithms
 
 
             return res.ToString();
+        }
+
+        public int gcd(int a, int b){
+            if(b==0) return a;
+
+            return gcd(b, a%b);
         }
     }
 }
